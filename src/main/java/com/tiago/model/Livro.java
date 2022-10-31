@@ -1,7 +1,14 @@
 package com.tiago.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Livro {
 	
+	@Id
+	@GeneratedValue
 	private String titulo;
 	private String isbn;
 	private double preco;
