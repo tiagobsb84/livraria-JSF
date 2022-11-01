@@ -2,6 +2,7 @@ package com.tiago.bean;
 
 import javax.faces.bean.ManagedBean;
 
+import com.tiago.dao.DAO;
 import com.tiago.model.Autor;
 
 @ManagedBean
@@ -15,5 +16,7 @@ public class AutorBean {
 	
 	public void gravar() {
 		System.out.println("Gravando " + this.autor.getNome());
+	
+		new DAO<Autor>(Autor.class).adiciona(this.autor);
 	}
 }
