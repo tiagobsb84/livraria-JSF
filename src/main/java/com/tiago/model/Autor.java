@@ -11,6 +11,7 @@ public class Autor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
+	
 	private String nome;
 	
 	public Integer getId() {

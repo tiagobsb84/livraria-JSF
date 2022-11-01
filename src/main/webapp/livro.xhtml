@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://xmlns.jcp.org/jsf/html">
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
@@ -21,9 +22,23 @@
 				<h:inputText id="preco" value="#{livroBean.livro.preco}" />
 				<h:outputLabel value="Data de Lançamento:" for="dataLancamento" />
 				<h:inputText id="dataLancamento" value="#{livroBean.livro.dataLancamento}" />
-				<h:commandButton value="Gravar" action="#{livroBean.gravar}" />
 			</h:panelGrid>
 		</fieldset>
+		<fieldset>
+			<legend>Dados do autor</legend>
+			<h:outputLabel value="Selecionar autor:" for="autor" />
+			<h:selectOneMenu value="#{livroBean.autorId}" id="autor">
+				<f:selectItems value="#{livroBean.autores}" var="autor"
+					itemLabel="#{autor.nome}" itemValue="#{autor.id}" />
+				<h:commandButton value="Gravar Autor" action="#{livroBean.gravarAutor}" />
+			</h:selectOneMenu>
+			<h:dataTable value="#{livroBean.autoresDoLivro}" var="autor" >
+				<h:column>
+					<h:outputText value="#{autor.nome}" />
+				</h:column>
+			</h:dataTable>
+		</fieldset>
+			<h:commandButton value="Gravar" action="#{livroBean.gravar}" />
 	</h:form>
 </h:body>
 </html>
