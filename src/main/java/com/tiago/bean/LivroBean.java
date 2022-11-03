@@ -28,9 +28,7 @@ public class LivroBean implements Serializable {
 		return livro;
 	}
 	
-	public List<Autor> getAutores() {
-		return new DAO<Autor>(Autor.class).listaTodos();
-	}
+	
 	
 	public Integer getAutorId() {
 		return autorId;
@@ -38,6 +36,14 @@ public class LivroBean implements Serializable {
 
 	public void setAutorId(Integer autorId) {
 		this.autorId = autorId;
+	}
+	
+	public List<Autor> getAutores() {
+		return new DAO<Autor>(Autor.class).listaTodos();
+	}
+	
+	public List<Livro> getLivros() {
+		return new DAO<Livro>(Livro.class).listaTodos();
 	}
 
 	//Salvar no banco de dados o livro
