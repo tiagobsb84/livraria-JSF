@@ -38,10 +38,12 @@ public class LivroBean implements Serializable {
 		this.autorId = autorId;
 	}
 	
+	//Lista todos autores
 	public List<Autor> getAutores() {
 		return new DAO<Autor>(Autor.class).listaTodos();
 	}
 	
+	//Lista todos livros
 	public List<Livro> getLivros() {
 		return new DAO<Livro>(Livro.class).listaTodos();
 	}
@@ -78,5 +80,11 @@ public class LivroBean implements Serializable {
 		if(!valor.startsWith("1")) {
 			throw new ValidatorException(new FacesMessage("O ISBN deveria começar com 1"));
 		}
+	}
+	
+	//Link para chamar o formulario autor
+	public String formAutor() {
+		System.out.println("Chamando o formulario do autor");
+		return "autor?faces-redirect=true";
 	}
 }

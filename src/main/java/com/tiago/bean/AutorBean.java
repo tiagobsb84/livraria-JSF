@@ -14,12 +14,15 @@ public class AutorBean {
 		return autor;
 	}
 	
-	public void gravar() {
+	//Salvar o autor e redirecionar para pagina livro
+	public String gravar() {
 		System.out.println("Gravando " + this.autor.getNome());
 	
 		new DAO<Autor>(Autor.class).adiciona(this.autor);
 		
 		//para limpar o campo do autor, depois de salvar.
 		this.autor = new Autor();
+		
+		return "livro?faces-redirect=true";
 	}
 }
