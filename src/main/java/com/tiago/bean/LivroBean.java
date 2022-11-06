@@ -87,4 +87,10 @@ public class LivroBean implements Serializable {
 		System.out.println("Chamando o formulario do autor");
 		return "autor?faces-redirect=true";
 	}
+	
+	//Remover livro
+	public void remover(Livro livro) {
+		System.out.println("Removendo Livro");
+		new DAO<Livro>(Livro.class).remove(livro);
+	}
 }
