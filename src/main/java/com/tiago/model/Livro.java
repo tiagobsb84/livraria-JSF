@@ -99,5 +99,10 @@ public class Livro implements Serializable {
 		Livro other = (Livro) obj;
 		return Objects.equals(id, other.id);
 	}
+
+	public void removeAutor(Autor autor) {
+		this.autores.remove(autor);
+		
+	}
 	
 }

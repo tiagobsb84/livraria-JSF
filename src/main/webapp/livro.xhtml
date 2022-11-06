@@ -73,6 +73,9 @@
 					<h:column>
 						<h:outputText value="#{autor.nome}" />
 					</h:column>
+					<h:column>
+						<h:commandLink value="x" action="#{livroBean.removerAutorDoLivro(autor)}" />
+					</h:column>
 				</h:dataTable>
 			</fieldset>
 	
