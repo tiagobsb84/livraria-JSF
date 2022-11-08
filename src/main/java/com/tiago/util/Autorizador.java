@@ -1,9 +1,12 @@
 package com.tiago.util;
 
+import javax.faces.application.NavigationHandler;
 import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseEvent;
 import javax.faces.event.PhaseId;
 import javax.faces.event.PhaseListener;
+
+import com.tiago.model.Usuario;
 
 public class Autorizador implements PhaseListener {
 
@@ -17,6 +20,19 @@ public class Autorizador implements PhaseListener {
 		String nomePagina = context.getViewRoot().getViewId();
 		
 		System.out.println(nomePagina);
+		
+		if("/login.xhtml".equals(nomePagina)) {
+			return;
+		}
+		
+		Usuario usuario = (Usuario) context.getExternalContext().getSessionMap().get("usuarioLogado");
+		
+		if(usuario != null) {
+			return;
+		}
+		
+		NavigationHandler handler = context.getApplication().getNavigationHandler();
+		handler.handleNavigation(context, null, "/login?faces-redirect=true");
 	}
 
 	@Override
