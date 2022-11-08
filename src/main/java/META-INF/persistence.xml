@@ -6,6 +6,7 @@
 	
 		<class>com.tiago.model.Autor</class>
 		<class>com.tiago.model.Livro</class>
+		<class>com.tiago.model.Usuario</class>
 	
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
