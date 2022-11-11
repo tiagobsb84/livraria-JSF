@@ -23,12 +23,12 @@ public class LivroBean implements Serializable {
 	private Livro livro = new Livro();
 	
 	private Integer autorId;
+	
+	private List<Livro> livros;
 
 	public Livro getLivro() {
 		return livro;
 	}
-	
-	
 	
 	public Integer getAutorId() {
 		return autorId;
@@ -45,7 +45,13 @@ public class LivroBean implements Serializable {
 	
 	//Lista todos livros
 	public List<Livro> getLivros() {
-		return new DAO<Livro>(Livro.class).listaTodos();
+		DAO<Livro> dao = new DAO<Livro>(Livro.class);
+		
+		if(this.livros == null) {
+			this.livros = dao.listaTodos();
+		}
+		
+		return livros; 
 	}
 
 	//Salvar no banco de dados o livro
@@ -53,16 +59,18 @@ public class LivroBean implements Serializable {
 		System.out.println("Gravando: " + this.livro.getTitulo());
 		
 		if (livro.getAutores().isEmpty()) {
-			//throw new RuntimeException("Livro deve ter pelo menos um Autor.");
 			FacesContext.getCurrentInstance().addMessage("autor", new FacesMessage("Livro deve ter pelo menos um autor"));
 			return;
 		}
 		
-		if(this.livro.getId() == null) {
-			new DAO<Livro>(Livro.class).adiciona(this.livro);
+		DAO<Livro> dao = new DAO<Livro>(Livro.class);
 		
+		if(this.livro.getId() == null) {
+			dao.adiciona(livro);
+			this.livros = dao.listaTodos();
+			
 		} else {
-			new DAO<Livro>(Livro.class).atualiza(this.livro);
+			dao.atualiza(livro);
 		}
 
 		this.livro = new Livro();
