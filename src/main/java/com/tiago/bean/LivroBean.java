@@ -107,6 +107,9 @@ public class LivroBean implements Serializable {
 	public void remover(Livro livro) {
 		System.out.println("Removendo Livro");
 		new DAO<Livro>(Livro.class).remove(livro);
+		
+		DAO<Livro> dao = new DAO<Livro>(Livro.class);
+		this.livros = dao.listaTodos();
 	}
 	
 	//Alterar livro
@@ -118,5 +121,7 @@ public class LivroBean implements Serializable {
 	//remover autor do livro
 	public void removerAutorDoLivro(Autor autor) {
 		this.livro.removeAutor(autor);
+		
+		
 	}
 }
