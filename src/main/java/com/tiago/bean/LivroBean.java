@@ -4,17 +4,17 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 
 import com.tiago.dao.DAO;
 import com.tiago.model.Autor;
 import com.tiago.model.Livro;
 
-@ManagedBean
+@Named
 @ViewScoped
 public class LivroBean implements Serializable {
 
