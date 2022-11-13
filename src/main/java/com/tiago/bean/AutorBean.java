@@ -4,9 +4,10 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
-import com.tiago.dao.DAO;
+import com.tiago.dao.AutorDao;
 import com.tiago.model.Autor;
 
 @Named
@@ -16,12 +17,11 @@ public class AutorBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Autor autor = new Autor();
-	
-	private Integer autorId;
 
-	public Autor getAutor() {
-		return autor;
-	}
+	private Integer autorId;
+	
+	@Inject
+	private AutorDao dao;
 	
 	public Integer getAutorId() {
 		return autorId;
@@ -33,12 +33,10 @@ public class AutorBean implements Serializable {
 
 	//Salvar o autor e redirecionar para pagina livro
 	public String gravar() {
-		System.out.println("Gravando " + this.autor.getNome());
-	
 		if (this.autor.getId() == null) {
-			new DAO<Autor>(Autor.class).adiciona(this.autor);
+			this.dao.adiciona(this.autor);
 		} else {
-			new DAO<Autor>(Autor.class).atualiza(this.autor);
+			this.dao.atualiza(this.autor);
 		}
 		
 		//para limpar o campo do autor, depois de salvar.
@@ -49,23 +47,30 @@ public class AutorBean implements Serializable {
 	
 	//Lista todos os autores
 	public List<Autor> getAutores() {
-		return new DAO<Autor>(Autor.class).listaTodos();
+		return this.dao.listaTodos();
 	}
 	
 	//Carregar Autor
 	public void carregar(Autor autor) {
-		System.out.println("Carregando autor");
 		this.autor = autor;
 	}
 
 	//Remover Autor
 	public void remover(Autor autor) {
-		System.out.println("Removendo autor");
-		new DAO<Autor>(Autor.class).remove(autor);
+		this.dao.remove(autor);
 	}
 	
 	//Carrega Id na URL
 	public void carregarAutorPelaId() {
-		this.autor = new DAO<Autor>(Autor.class).buscaPorId(autorId);
+		this.autor = this.dao.buscaPorId(autorId);
 	}
+
+	public Autor getAutor() {
+		return autor;
+	}
+
+	public void setAutor(Autor autor) {
+		this.autor = autor;
+	}
+	
 }
