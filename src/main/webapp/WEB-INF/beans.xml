@@ -1,3 +1,5 @@
-<!-- WebContent/WEB-INF/beans.xml -->
 <beans>
+	<interceptors>
+		<class>com.tiago.tx.GerenciadorDeTransacao</class>
+	</interceptors>
 </beans>

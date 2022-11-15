@@ -15,6 +15,7 @@ import com.tiago.dao.AutorDao;
 import com.tiago.dao.LivroDao;
 import com.tiago.model.Autor;
 import com.tiago.model.Livro;
+import com.tiago.tx.Transacional;
 
 @Named
 @ViewScoped
@@ -80,6 +81,7 @@ public class LivroBean implements Serializable {
 	}
 	
 	//Salvar no banco de dados o livro
+	@Transacional
 	public void gravar() {
 		if (livro.getAutores().isEmpty()) {
 			FacesContext.getCurrentInstance().addMessage("autor", 
@@ -99,6 +101,7 @@ public class LivroBean implements Serializable {
 	}
 	
 	//Remover livro
+	@Transacional
 	public void remover(Livro livro) {
 		this.livroDao.remove(livro);
 		

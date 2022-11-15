@@ -9,6 +9,7 @@ import javax.inject.Named;
 
 import com.tiago.dao.AutorDao;
 import com.tiago.model.Autor;
+import com.tiago.tx.Transacional;
 
 @Named
 @ViewScoped
@@ -32,6 +33,7 @@ public class AutorBean implements Serializable {
 	}
 
 	//Salvar o autor e redirecionar para pagina livro
+	@Transacional
 	public String gravar() {
 		if (this.autor.getId() == null) {
 			this.dao.adiciona(this.autor);
@@ -56,6 +58,7 @@ public class AutorBean implements Serializable {
 	}
 
 	//Remover Autor
+	@Transacional
 	public void remover(Autor autor) {
 		this.dao.remove(autor);
 	}
