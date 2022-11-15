@@ -118,7 +118,7 @@ public class LivroBean implements Serializable {
 	
 	//Alterar livro
 	public void carregar(Livro livro) {
-		this.livro = livro;
+		this.livro = livroDao.buscaPorId(livro.getId());
 	}
 	
 	//Link para chamar o formulario autor
